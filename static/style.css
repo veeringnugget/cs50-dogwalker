@@ -1,0 +1,28 @@
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;;
+}
+
+.height {
+    height: 100vh;
+}
+
+#left {
+    background-color: #E4E6EA;
+}
+
+.container {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    border: 5px solid black;
+}
+#right {
+    background-color: white;
+}
+
+form {
+    padding-top: 50px;
+}
