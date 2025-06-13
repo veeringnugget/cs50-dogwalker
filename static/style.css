@@ -6,12 +6,14 @@
     margin: 0;;
 }
 
+body {
+    position: relative;
+}
+
 .height {
     height: 100vh;
 }
 
-
-/* ---- Login Page ---- */
 
 .btn {
     margin-top: 20px;
@@ -79,15 +81,25 @@ h1 {
 }
 
 #left-login-logo {
-    height:550px;
-    width: 550px;
+    max-width: 75%;
+    height: auto;
+    display: block;
+}
+
+#top-right {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    margin: 20px;
+    font-size: 15px;
+    font-weight: 600;
+    color: black;
 }
 
 #right {
     background-color: white;
+    position: relative;
 }
-
-
 
 
 
