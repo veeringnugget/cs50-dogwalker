@@ -1,3 +1,5 @@
+/* ---- Global Styles ---- */
+
 * {
     box-sizing: border-box;
     padding: 0;
@@ -8,8 +10,15 @@
     height: 100vh;
 }
 
-#left {
+
+/* ---- Login Page ---- */
+
+.btn {
+    margin-top: 20px;
+    width: 60%;
+    color: black;
     background-color: #E4E6EA;
+    border: 1px solid #E4E6EA;
 }
 
 .container {
@@ -17,12 +26,68 @@
     display: flex;
     justify-content: center;
     flex-direction: column;
-    border: 5px solid black;
 }
+
+form {
+    padding-top: 80px;
+}
+
+.form-control {
+    display: flex;
+    border-radius: 10px;
+    flex-direction: column;
+    align-items: center;
+    width: 60%;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+h1 {
+    line-height: normal;
+    font-weight: bold;
+    font-size: 65px;
+}
+
+.header {
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+#login-logo {
+    height: 85px;
+    width: 85px;
+}
+
+.label {
+    display: flex;
+    width: 60%;
+    font-weight: 600;
+}
+
+#left {
+    background-color: #E4E6EA;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#left-login-logo {
+    height:550px;
+    width: 550px;
+}
+
 #right {
     background-color: white;
 }
 
-form {
-    padding-top: 50px;
-}
+
+
+
+
