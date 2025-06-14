@@ -9,33 +9,77 @@
 
     <div class="col-md p-0 m-0 themed-grid-col" id="right">
         <div class="container">
-            <a id="top-right" href="/templates/login.html">Login</a>
+            <a id="top-right" href="/login">Login</a>
             <div class="header">
                 <img id="login-logo" src="/static/k9-logo.png" alt="logo">
                 <h1>Fetch.</h1>
             </div>
 
             <form action="/register" method="post">
-
+                <!-- NAME: -->
                 <div class="form-group">
                     <label class="label">Name</label>
-                    <input type="text" class="form-control" autocomplete="off" name="name" placeholder="Enter name">
+                    <input type="text" class="form-control" autocomplete="off" name="name" placeholder="Enter Name">
                 </div>
+                {% with messages = get_flashed_messages(with_categories=True) %}
+                    {% for category, text in messages %}
+                        {% if category == "name" %}
+                            <p class="flash">{{ text }}</p>
+                        {% endif %}
+                    {% endfor %}
+                {% endwith %}
 
+                 <!-- USERNAME: -->               
                 <div class="form-group">
                     <label class="label">Username</label>
-                    <input type="text" autofocus autocomplete="off" class="form-control" name="username" placeholder="Enter username">
+                    <input type="text" autocomplete="off" class="form-control" name="username" placeholder="Enter Username">
                 </div>
+                {% with messages = get_flashed_messages(with_categories=True) %}
+                    {% for category, text in messages %}
+                        {% if category == "username" or category == "username-exists" %}
+                            <p class="flash">{{ text }}</p>
+                        {% endif %}
+                    {% endfor %}
+                {% endwith %}             
 
+                <!-- EMAIL: -->
                 <div class="form-group">
                     <label class="label">Email</label>
-                    <input type="email" autocomplete="off" class="form-control"aria-describedby="emailHelp" placeholder="Enter email">
+                    <input type="email" autocomplete="off" name="email" class="form-control"aria-describedby="emailHelp" placeholder="Enter Email">
                 </div>
+                {% with messages = get_flashed_messages(with_categories=True) %}
+                    {% for category, text in messages %}
+                        {% if category == "email" %}
+                            <p class="flash">{{ text }}</p>
+                        {% endif %}
+                    {% endfor %}
+                {% endwith %}              
 
+                <!-- PASSWORD: -->
                 <div class="form-group">
                     <label class="label">Password</label>
-                    <input type="password" class="form-control" placeholder="Password">
+                    <input type="password" class="form-control" name="password" placeholder="Password">
                 </div>
+                {% with messages = get_flashed_messages(with_categories=True) %}
+                    {% for category, text in messages %}
+                        {% if category == "password" %}
+                            <p class="flash">{{ text }}</p>
+                        {% endif %}
+                    {% endfor %}
+                {% endwith %}
+
+                <!--CONFIRM PASSWORD: -->
+                <div class="form-group">
+                    <label class="label">Confirm Password</label>
+                    <input type="password" class="form-control" name="confirm-password" placeholder="Confirm Password">
+                </div>
+                {% with messages = get_flashed_messages(with_categories=True) %}
+                    {% for category, text in messages %}
+                        {% if category == "confirm-password" or category == "match-passwords" %}
+                            <p class="flash">{{ text }}</p>
+                        {% endif %}
+                    {% endfor %}
+                {% endwith %}
 
                 <button type="submit" name="register" class="btn btn-primary">Register</button>
             </form>
