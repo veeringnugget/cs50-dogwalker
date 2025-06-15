@@ -12,6 +12,7 @@ body {
 
 .height {
     height: 100vh;
+    display: flex;
 }
 
 .flash {
@@ -111,4 +112,66 @@ h1 {
 }
 
 
+/* ---- Logged in Styles ---- */
+.sidebar {
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 25%;
+    height: 100vh;
+    background-color: #212529!important;
+}
 
+.container-fluid {
+    padding: 0px;
+}
+
+.navbar {
+    padding-top: 10px;
+}
+
+
+
+.navbar-brand {
+    color: white;
+    padding-left: 0px;
+    margin: 0px;
+}
+
+.navbar-brand:hover {
+    color: #9b9b9b;
+}
+
+.nav {
+    display: flex;
+    justify-content: center;
+    width: 90%;
+
+}
+
+.nav-link {
+    margin: 10px;
+    padding: 10px;
+}
+
+.nav-link {
+    display: flex;
+    align-items: center;
+    color: white;
+}
+
+.nav-link:hover {
+    color: #9b9b9b; 
+}
+
+.bi {
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 8px;
+}
+
+.sign-out {
+    padding: 20px;
+    color: white;!important
+}
