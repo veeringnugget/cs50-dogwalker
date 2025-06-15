@@ -12,15 +12,35 @@ def index():
 @app.route('/login', methods=["GET", "POST"])
 def login():
     if request.method == "POST":
-        email = request.form.get("email")
-        password = request.form.get("password")
+        # Put user entered data in a variable
+        email = request.form.get("email").lower()
+        password = request.form.get("password").lower()
+
+        # Connect to the database
+        connection = sqlite3.connect("fetch.db")
+        cursor = connection.cursor()
+
+        # Query the dataabase
+        authenticate = cursor.execute("SELECT email, hash FROM users WHERE email = ?", (email,),).fetchone() 
+        if not authenticate:
+            print("not found")
+        else:
+            password_check = check_password_hash(authenticate[1], password)
+            if password_check == True:
+                print("match")
+            else:
+                print("password incorrect")
+
+        # Error checking
+        # email not entered, password not entered, email or password is incorrect, email not associated with an account
+
     return render_template('login.html')
 
 @app.route('/register', methods=["GET", "POST"])
 def register():
     if request.method == "POST":
         error = False
-        # Connect to the Database:
+        # Connect to the database:
         connection = sqlite3.connect("fetch.db")
         cursor = connection.cursor()
 
