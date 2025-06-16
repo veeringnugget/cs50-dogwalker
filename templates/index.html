@@ -1,12 +1,15 @@
 {% extends "layout.html" %}
 {% block title %}Dashboard{% endblock %}
 {% block body %}
+<div class="home-container">
+<!--SIDE BAR: -->
 <div class="sidebar">
     <nav class="navbar bg-body-tertiary">
   <div class="container-fluid">
     <a class="navbar-brand" href="#">
       Dashboard
     </a>
+    <p id="name">Welcome, {{name}}</p>
   </div>
 </nav>
 
@@ -39,7 +42,15 @@
 </ul>
 
 <div class="sign-out">
+      <hr>
     <a class="sign-out" href="/logout">Log out</a></div>
+</div>
+
+<!--BODY OF TEXT-->
+<div class="dashboard">
+    <h3>Hey {{name}}</h3>
+    <h4>Check your dashboard for walk updates</h4>
+</div>
 </div>
 
 {% endblock %}
