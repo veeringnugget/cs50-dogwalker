@@ -112,57 +112,71 @@ h1 {
 }
 
 
-/* ---- Logged in Styles ---- */
+/* ---- Logged in Sidebar ---- */
 .sidebar {
-    color: white;
+    color: #212529;
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 25%;
+    width: 15%;
     height: 100vh;
-    background-color: #212529!important;
+    background-color: #F0F2F5;
+    padding-top: 20px;
 }
 
 .container-fluid {
     padding: 0px;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
 }
 
 .navbar {
-    padding-top: 10px;
+    padding: 0px;
+    margin-bottom: 20px;
+    width: 100%;
 }
 
-
-
 .navbar-brand {
-    color: white;
+    color: black;
     padding-left: 0px;
     margin: 0px;
+    font-weight: 500;
 }
 
 .navbar-brand:hover {
-    color: #9b9b9b;
+    color: #6c757d;
 }
 
 .nav {
     display: flex;
     justify-content: center;
+    flex-direction: column;
     width: 90%;
 
 }
 
 .nav-link {
-    margin: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    color: #212529;
+    margin-bottom: 10px;
     padding: 10px;
+    font-weight: 500;
 }
 
 .nav-link {
     display: flex;
     align-items: center;
-    color: white;
+    color: black;
 }
 
 .nav-link:hover {
-    color: #9b9b9b; 
+    background-color: #e2e6ea;
+    color: 495057;
+    text-decoration: none;
 }
 
 .bi {
@@ -172,6 +186,35 @@ h1 {
 }
 
 .sign-out {
+    font-weight: 500;
+    text-decoration: none;
     padding: 20px;
-    color: white;!important
+    color: #212529;
+}
+
+.sign-out:hover {
+    color: #9b9b9b; 
+    text-decoration: none;
+}
+
+
+hr {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    border: none;
+    border-top: 1px solid #ccc;
+    margin-bottom: 8px;
+    width: 80%;
+    align-self: center;
+}
+
+
+/* ---- Dashboard ---- */
+.home-container {
+    display: flex;
+}
+
+.dashboard {
+    width: 100%;
+    padding-left: 20px;
 }
