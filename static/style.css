@@ -175,3 +175,19 @@ hr {
 .flex-fill {
     margin-bottom: 20px;
 }
+
+.dash-top {
+    margin-top: 10px;
+}
+
+.centre {
+    margin-left: 20px;
+}
+
+.dashboard-centre {
+    width: 97%;
+    padding-right: 30px;
+    margin-top: 40px;
+    height: 83vh;
+}
+
