@@ -1,11 +1,28 @@
 import sqlite3
+from functools import wraps
 from flask import Flask, render_template, request, redirect, url_for, session, flash
 from werkzeug.security import generate_password_hash, check_password_hash
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = '.feowkfeopwk3243z,mpo302@;k'
 
+# Track logged in users
+def login_required(view):
+    @wraps(view)
+    def wrapped_view(**kwargs):
+        if "user_id" not in session:
+            return redirect(url_for("login"))
+        return view(**kwargs)
+    return wrapped_view
+
+# log users out
+@app.route("/logout")
+def logout():
+    session.clear()
+    return redirect(url_for("login"))
+
 @app.route('/')
+@login_required
 def index():
     return render_template('index.html')
 
@@ -21,18 +38,41 @@ def login():
         cursor = connection.cursor()
 
         # Query the dataabase
-        authenticate = cursor.execute("SELECT email, hash FROM users WHERE email = ?", (email,),).fetchone() 
-        if not authenticate:
-            print("not found")
-        else:
-            password_check = check_password_hash(authenticate[1], password)
-            if password_check == True:
-                print("match")
-            else:
-                print("password incorrect")
+        authenticate = cursor.execute("SELECT email, hash FROM users WHERE email = ?", (email,),).fetchone()
 
         # Error checking
-        # email not entered, password not entered, email or password is incorrect, email not associated with an account
+        error = False
+
+        if not email:
+            flash("Email must be entered", "email-blank")
+            error = True
+        
+        if not password:
+            flash("Password must be entered", "password")
+            error = True
+        
+        if not authenticate:
+            flash("Email not found", "email-not-found")
+            error = True
+        
+        else:
+            password_check = check_password_hash(authenticate[1], password)
+            if password_check == False:
+                flash("Password is incorrect. Please try again", "password-check")
+                error = True
+
+        if error == False:
+            id = cursor.execute("SELECT id FROM users WHERE email = ?", (email,),).fetchone()
+            session["user_id"] = id[0]
+            db_name = cursor.execute("SELECT name FROM users WHERE id = ?", (session["user_id"],)).fetchone()
+
+            # Remove punctuation from the name string
+            name = ''
+            for item in db_name:
+                name = item
+
+            print(name)
+            return render_template("index.html", name=name)
 
     return render_template('login.html')
 
