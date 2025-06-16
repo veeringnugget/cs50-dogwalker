@@ -1,4 +1,5 @@
 import sqlite3
+from datetime import datetime
 from functools import wraps
 from flask import Flask, render_template, request, redirect, url_for, session, flash
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -24,7 +25,15 @@ def logout():
 @app.route('/')
 @login_required
 def index():
-    return render_template('index.html')
+    name = session.get("name")
+    time = datetime.now().hour
+    if time < 12:
+        greeting = "Good morning, "
+    elif time < 17:
+        greeting = "Good afternoon, "
+    elif time > 17:
+        greeting = "Good evening, "
+    return render_template("index.html", name=name, greeting=greeting)
 
 @app.route('/login', methods=["GET", "POST"])
 def login():
@@ -71,8 +80,8 @@ def login():
             for item in db_name:
                 name = item
 
-            print(name)
-            return render_template("index.html", name=name)
+            session["name"] = name
+            return redirect(url_for("index"))
 
     return render_template('login.html')
 
