@@ -35,60 +35,20 @@
   </div>
 
   <!--CENTRE PAGE-->
-  <div class="flex-grow-1">
-    <div class="centre">
-    <div class="dash-top">
-      <h2>{{greeting}}{{name}}</h2>
-      <h5>Check here for overview</h5>
+  <div class="container-fluid"">
+    <div class="row align p-3 flex-column b-2">
+      <h3>{{greeting}}{{name}}</h3>
+      <span class="border-bottom"><h5>Please check out your dashboard below.</h5></span>
     </div>
-
-<div class="container-fluid dashboard-centre">
-  <div class="row gx-0">
-    <div class="col-md-6">
-      <div class="border p-2">
-        <h6>My Walks:</h6>
-<table class="table">
-  <thead>
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">First</th>
-      <th scope="col">Last</th>
-      <th scope="col">Handle</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
-    </tr>
-    <tr>
-      <th scope="row">2</th>
-      <td>Jacob</td>
-      <td>Thornton</td>
-      <td>@fat</td>
-    </tr>
-    <tr>
-      <th scope="row">3</th>
-      <td>John</td>
-      <td>Doe</td>
-      <td>@social</td>
-    </tr>
-  </tbody>
-</table>
-      </div>
+    <div class="row" style="height: 30vh; margin-top: 15px;">
+      <div class="col" style="border: 2px solid yellow;">Top-Left</div>
+      <div class="col" style="border: 2px solid green;">Top-Right</div>
     </div>
-    <div class="col-md-6">
-      <div class="border p-2">TEST HERE</div>
+    <div class="row" style="height: 30vh; margin-top: 15px;">
+      <div class="col" style="border: 2px solid yellow;">Top-Left</div>
+      <div class="col" style="border: 2px solid green;">Top-Right</div>
     </div>
   </div>
 
-  <div class="row gx-2 mt-4">
-    <div class="col-md-6">
-      <div class="border p-3">TEST HERE</div>
-    </div>
-  </div>
-</div>
 
 {% endblock %}
