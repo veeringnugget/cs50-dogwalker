@@ -28,11 +28,11 @@ def index():
     name = session.get("name")
     time = datetime.now().hour
     if time < 12:
-        greeting = "Good morning, "
+        greeting = "Good Morning, "
     elif time < 17:
-        greeting = "Good afternoon, "
+        greeting = "Good Afternoon, "
     elif time > 17:
-        greeting = "Good evening, "
+        greeting = "Good Evening, "
     return render_template("index.html", name=name, greeting=greeting)
 
 @app.route('/login', methods=["GET", "POST"])
@@ -81,6 +81,8 @@ def login():
                 name = item
 
             session["name"] = name
+            connection.commit()
+            connection.close() 
             return redirect(url_for("index"))
 
     return render_template('login.html')
@@ -142,6 +144,13 @@ def register():
           connection.close() 
           return redirect(url_for('login'))
     return render_template('register.html')
+
+@app.route('/add', methods=["GET", "POST"])
+def add():
+    if request.method == "POST":
+        return render_template('add.html')
+    return render_template('add.html')
+
 
 if __name__ == "__main__":  
     app.run(debug=True)
