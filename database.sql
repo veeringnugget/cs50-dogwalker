@@ -5,3 +5,15 @@ username TEXT NOT NULL,
 email TEXT NOT NULL UNIQUE,
 hash TEXT NOT NULL
 );
+
+CREATE TABLE IF NOT EXISTS clients (
+id INTEGER PRIMARY KEY AUTOINCREMENT,
+client_name TEXT NOT NULL,
+pets_name TEXT NOT NULL,
+breed TEXT,
+age INTEGER,
+gender TEXT,
+image BLOB,
+contract BLOB,
+notes TEXT
+);
