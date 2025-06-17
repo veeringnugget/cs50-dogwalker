@@ -148,7 +148,30 @@ def register():
 @app.route('/add', methods=["GET", "POST"])
 def add():
     if request.method == "POST":
-        return render_template('add.html')
+        client = request.form.get("client")
+        if not client:
+            flash("Client Name Cannot be Blank", "name")
+        pet_name = request.form.get("pet-name")
+        if not pet_name:
+            flash("Pets Name Cannot be Blank", "pet")
+        breed = request.form.get("breed")
+        if not breed:
+            breed = "NULL"
+        age = request.form.get("age")
+        if not age:
+            age = "NULL"
+        gender = request.form.get("gender")
+        if not gender:
+            gender = "NULL"
+        image = request.form.get("image")
+        if not image:
+            image = "NULL"
+        contract = request.form.get("contract")
+        if not contract:
+            contract = "NULL"
+        notes = request.form.get("notes")
+        if not notes:
+            notes = "NULL"    
     return render_template('add.html')
 
 
