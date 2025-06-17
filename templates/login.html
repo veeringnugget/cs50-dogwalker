@@ -9,7 +9,7 @@
 
     <div class="col-md p-0 m-0 themed-grid-col" id="right">
         <div class="container">
-            <a id="top-right" href="/templates/register.html">Not a member? Sign up here!</a>
+            <a id="top-right" href="/register">Not a member? Sign up here!</a>
             <div class="header">
                 <img id="login-logo" src="/static/k9-logo.png" alt="logo">
                 <h1>Fetch.</h1>
@@ -18,13 +18,27 @@
             <form action="/login" method="post">
                 <div class="form-group">
                     <label class="label">Email</label>
-                    <input type="email" autofocus class="form-control" name="email" aria-describedby="emailHelp" placeholder="Enter email">
+                    <input type="email" autofocus autocomplete="off" class="form-control" name="email" aria-describedby="emailHelp" placeholder="Enter email">
                 </div>
+                {% with messages = get_flashed_messages(with_categories=True) %}
+                    {% for category, text in messages %}
+                        {% if category == "email-not-found" or category == "email-blank" %}
+                            <p class="flash">{{ text }}</p>
+                        {% endif %}
+                    {% endfor %}
+                {% endwith %}
 
                 <div class="form-group">
                     <label class="label">Password</label>
                     <input type="password" class="form-control" name="password" placeholder="Password">
                 </div>
+                {% with messages = get_flashed_messages(with_categories=True) %}
+                    {% for category, text in messages %}
+                        {% if category == "password" or category == "password-check" %}
+                            <p class="flash">{{ text }}</p>
+                        {% endif %}
+                    {% endfor %}
+                {% endwith %}
 
                 <button type="submit" name="submit" class="btn btn-primary">Log In</button>
             </form>

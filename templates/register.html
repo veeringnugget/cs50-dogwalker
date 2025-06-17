@@ -36,7 +36,7 @@
                 </div>
                 {% with messages = get_flashed_messages(with_categories=True) %}
                     {% for category, text in messages %}
-                        {% if category == "username" or category == "username-exists" %}
+                        {% if category == "username" %}
                             <p class="flash">{{ text }}</p>
                         {% endif %}
                     {% endfor %}
