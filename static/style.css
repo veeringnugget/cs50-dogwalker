@@ -55,7 +55,7 @@ form {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-bottom: 5px;
+    justify-content: space-between;
 }
 
 h1 {
@@ -113,9 +113,6 @@ h1 {
 
 
 /* ---- Logged in Sidebar ---- */
-.sidebar {
-    background-color: #F0F2F5;
-}
 
 .navbar>.container-fluid {
     display: flex;
@@ -166,28 +163,9 @@ hr {
     bottom: 0;
 }
 
-/* ---- Dashboard ---- */
-
-.nav {
-    width: 100%;
-}
 
 .flex-fill {
     margin-bottom: 20px;
 }
 
-.dash-top {
-    margin-top: 10px;
-}
-
-.centre {
-    margin-left: 20px;
-}
-
-.dashboard-centre {
-    width: 97%;
-    padding-right: 30px;
-    margin-top: 40px;
-    height: 83vh;
-}
-
+/* ---- Dashboard ---- */
