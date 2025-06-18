@@ -5,13 +5,13 @@ Fetch is my CS50x Final Project - a platform designed for dog-walkers to manage 
 
 I noticed that many dog-walkers rely on informal methods like Facebook groups or personal websites to oragnise their business. Fetch aims to streamline this process, offering a scalable solution with separate roles for walkers and clients that could be added further down the line.
 
-Login:
+### :lock: Login:
 The login page is designed to be clean and modern with some personality added through the imagery on the left. I used Flask's flash functionality to display helpful error messages for missing or incorrect login details. This helps to guide users without disrupting the user experience.
 
-Register:
+### :clipboard: Register:
 The registration page follows the same clean design as the login. It also uses flash messages to provide instant feedback on user input errors. 
 
-Index / Homepage:
+### :house: Index / Homepage:
 This was the most challenging page to build. I chose to use Boostrap for layout and styling to help ensure consistency, but I struggled with the left-hand sidebar navigation and the responsiveness of the layout across different screen sizes. My initial vision was to show more detailed information up front, but I pivoted towards a simpler, dashboard-style layout that offers a quick snapshot of a walkers activity.
 
 The index / homepage has 4 main panels:
@@ -22,19 +22,19 @@ The index / homepage has 4 main panels:
 
 Whilst the layout could be improved with more time and experience, I'm glad I managed to capture the main features I originally intended.
 
-Walks:
+### :paw_prints: Walks:
 This page is used to log and track walk details. I used a for loop to iterate over the client list, displaying both the pets name and the breed to help avoid confusion if there are multiple pets with the same name. The form contains dropdwons and inputs that a walker would typically use - type of walk, duration, payment amount, etc.
 
 All data here is stored in the walks table of fetch.db. It also links each walk to a specific client using a foreign key, enabling seamless connection across different parts of the application.
 
-Add a Client:
+### :heavy_plus_sign: Add a Client:
 This is where the walker will add any clients they have on their books and again, it is a simple form for them to fill out and it will add to a table named "clients". Throughout my tables, I ensured to keep a Primary Key and a Foreign Key to ensure that all tables were able to be interconnected so that they could all work together.
 
 This page allows walkers to register a new client. The form is kept simple to allow to allow fast input, collecting details such as the client's name, pet's name, breed, age, gender, and any additional notes. Information submitted is stored in the clients table.
 
 Each client is assigned a unique primary key, and every entry is tied to the logged in user via a foreign key. This structure keeps all user data separated and allows multiple users to have their own sets of clients without overlap or data leakage.
 
-Database Structure:
+### :file_folder: Database Structure:
 The project uses SQLite with the following tables:
 1. users - stores the user login details
 2. clients - stores client and pet information
