@@ -8,6 +8,7 @@ hash TEXT NOT NULL
 
 CREATE TABLE IF NOT EXISTS clients (
 id INTEGER PRIMARY KEY AUTOINCREMENT,
+user_id INTEGER NOT NULL,
 client_name TEXT NOT NULL,
 pets_name TEXT NOT NULL,
 breed TEXT,
@@ -16,4 +17,16 @@ gender TEXT,
 image BLOB,
 contract BLOB,
 notes TEXT
+);
+
+CREATE TABLE IF NOT EXISTS walks (
+id INTEGER PRIMARY KEY AUTOINCREMENT,
+client_id INTEGER NOT NULL,
+type TEXT,
+time TEXT,
+repeat TEXT,
+payment INTEGER NOT NULL,
+paid TEXT NOT NULL,
+notes TEXT,
+FOREIGN KEY (client_id) REFERENCES clients(id)
 );
