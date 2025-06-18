@@ -25,6 +25,9 @@ def logout():
 @app.route('/')
 @login_required
 def index():
+    connection = sqlite3.connect("fetch.db")
+    cursor = connection.cursor()
+    client_db = cursor.execute("SELECT * FROM clients WHERE user_id = ?", (session["user_id"],)).fetchall()
     name = session.get("name")
     time = datetime.now().hour
     if time < 12:
@@ -33,7 +36,9 @@ def index():
         greeting = "Good Afternoon, "
     elif time > 17:
         greeting = "Good Evening, "
-    return render_template("index.html", name=name, greeting=greeting)
+    connection.commit()
+    connection.close()
+    return render_template("index.html", name=name, greeting=greeting, client=client_db)
 
 @app.route('/login', methods=["GET", "POST"])
 def login():
@@ -146,34 +151,50 @@ def register():
     return render_template('register.html')
 
 @app.route('/add', methods=["GET", "POST"])
+@login_required
 def add():
     if request.method == "POST":
+        error = False
         client = request.form.get("client")
         if not client:
             flash("Client Name Cannot be Blank", "name")
+            error = True
         pet_name = request.form.get("pet-name")
         if not pet_name:
             flash("Pets Name Cannot be Blank", "pet")
+            error = True
         breed = request.form.get("breed")
         if not breed:
             breed = "NULL"
         age = request.form.get("age")
+        print(age)
         if not age:
             age = "NULL"
         gender = request.form.get("gender")
         if not gender:
             gender = "NULL"
-        image = request.form.get("image")
-        if not image:
-            image = "NULL"
-        contract = request.form.get("contract")
-        if not contract:
-            contract = "NULL"
         notes = request.form.get("notes")
         if not notes:
             notes = "NULL"    
+        if error == False:
+            # Connect to the database
+            connection = sqlite3.connect("fetch.db")
+            cursor = connection.cursor()
+
+            # Add information from form to the database
+            cursor.execute("INSERT INTO clients(user_id, client_name, pets_name, breed, age, gender, notes) VALUES(?, ?, ?, ?, ?, ?, ?)", (session["user_id"], client, pet_name, breed, age, gender, notes))
+            connection.commit()
+            connection.close()
+            return redirect(url_for("add"))
+
     return render_template('add.html')
 
+@app.route('/walks', methods=["GET", "POST"])
+@login_required
+def walks():
+    if request.method == "POST":
+        return render_template('walks.html')
+    return render_template('walks.html')
 
 if __name__ == "__main__":  
     app.run(debug=True)
