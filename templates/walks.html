@@ -1,0 +1,109 @@
+{% extends "layout.html" %}
+{% block title %}Add Client Info{% endblock %}
+{% block body %}
+
+<div class="d-flex">
+
+  <!--SIDEBAR:-->
+  <div class="sidebar p-3 text-break" style="height: 100vh; width: 15%; min-width: 200px; background-color: #F0F2F5;">
+    <nav class="navbar">
+      <div class="container-fluid">
+        <a class="navbar-brand d-flex align-items-center gap-2" href="#">
+          <img id="sidebar-logo" src="/static/k9-logo.png" alt="Logo" width="auto" height="45">
+          Fetch.
+        </a>
+        
+        <hr>
+
+        <nav class="nav nav-pills flex-column flex-sm-column flex-lg-column" style="width: 100%;">
+          <a class="flex-fill text-sm-start nav-link" aria-current="page" href="/">
+            <img class="link-logo" src="/static/house.svg" alt="Home" style="height: 18px; width: 18px;">
+            Dashboard
+          </a>
+          <a class="flex-fill text-sm-start nav-link active" href="/walks">
+            <img class="link-logo" src="/static/clipboard-check.svg" alt="Home" style="height: 18px; width: 18px;">
+            Walks
+          </a>
+          <a class="flex-fill text-sm-start nav-link" href="/add">
+            <img class="link-logo" src="/static/plus-square.svg" alt="Home" style="height: 18px; width: 18px;">
+            Add a Client
+          </a>
+          <hr>
+        </nav>
+          <a id="logout" href="/logout">Logout?</a>
+      </div> 
+  </div>
+
+
+
+
+  <!--CENTRE PAGE-->
+  <div class="container-fluid">
+    <div class="row align p-3 flex-column b-2">
+      <span class="border-bottom"><h5>Add Client Information:</h5></span>
+    </div>
+    <div class="col" style="height: 30vh;">
+
+    <form action="/add" method="post" style="padding-top: 20px;">
+
+        <div class="form-group">
+            <label class="label">Select Client</label>
+            <select id="gender" class="form-control" autocomplete="off" name="client">
+                <option selected>Choose...</option>
+                <option>Male</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label class="label">Type of Visit</label>
+            <select id="gender" class="form-control" autocomplete="off" name="type">
+                <option selected>Choose...</option>
+                <option>Solo Dog Walk</option>
+                <option>Group Dog Walk</option>
+                <option>Stay and Play</option>
+                <option>Check In</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label class="label">How Long Will You Be There?</label>
+            <input type="text" class="form-control" autocomplete="off" name="time" placeholder="Please Enter Length of Time">
+        </div>
+
+        <div class="form-group">
+            <label class="label">Is This a Repeat Client?</label>
+            <select id="gender" class="form-control" autocomplete="off" name="repeat">
+                <option selected>Choose...</option>
+                <option>Yes</option>
+                <option>No</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label class="label">Payment</label>
+            <input type="number" min="0.00" max="10000.00" step="0.01" class="form-control" autocomplete="off" name="payment" placeholder="Please Enter Payment for Service">
+        </div>
+
+        <div class="form-group">
+            <label class="label">Client Paid?</label>
+            <select id="gender" class="form-control" autocomplete="off" name="paid">
+                <option selected>Choose...</option>
+                <option>Yes</option>
+                <option>No</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label class="label">Any Extra Notes?</label>
+            <textarea class="form-control" name="notes" id="exampleFormControlTextarea1" rows="3"></textarea>
+        </div>
+
+    <div class="d-flex justify-content-center">
+        <button type="submit" name="add" class="btn btn-primary">Submit</button>
+    </div>
+    </div>
+    </form>
+    </div>
+    </div>
+
+{% endblock %}
