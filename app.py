@@ -165,17 +165,16 @@ def add():
             error = True
         breed = request.form.get("breed")
         if not breed:
-            breed = "NULL"
+            breed = " "
         age = request.form.get("age")
-        print(age)
         if not age:
-            age = "NULL"
+            age = " "
         gender = request.form.get("gender")
         if not gender:
-            gender = "NULL"
+            gender = " "
         notes = request.form.get("notes")
         if not notes:
-            notes = "NULL"    
+            notes = " "    
         if error == False:
             # Connect to the database
             connection = sqlite3.connect("fetch.db")
@@ -193,8 +192,24 @@ def add():
 @login_required
 def walks():
     if request.method == "POST":
-        return render_template('walks.html')
-    return render_template('walks.html')
+        connection = sqlite3.connect("fetch.db")
+        cursor = connection.cursor()
+        client = request.form.get("client")
+        type = request.form.get("type")
+        time = request.form.get("time")
+        repeat = request.form.get("repeat")
+        payment = request.form.get("payment")
+        paid = request.form.get("paid")
+        notes = request.form.get("notes")
+        cursor.execute("INSERT INTO walks(client_id, type, time, repeat, payment, paid, notes) VALUES(?, ?, ?, ?, ?, ?, ?)", (client, type, time, repeat, payment, paid, notes))
+        connection.commit()
+        connection.close()
+    connection = sqlite3.connect("fetch.db")
+    cursor = connection.cursor()
+    db_clients = cursor.execute("SELECT id, client_name, pets_name, breed FROM clients WHERE user_id = ?", (session["user_id"],)).fetchall()
+    connection.commit()
+    connection.close()
+    return render_template('walks.html', client=db_clients)
 
 if __name__ == "__main__":  
     app.run(debug=True)
