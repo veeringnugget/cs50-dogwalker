@@ -44,13 +44,17 @@
     </div>
     <div class="col" style="height: 30vh;">
 
-    <form action="/add" method="post" style="padding-top: 20px;">
+    <form action="/walks" method="post" style="padding-top: 20px;">
 
         <div class="form-group">
             <label class="label">Select Client</label>
             <select id="gender" class="form-control" autocomplete="off" name="client">
                 <option selected>Choose...</option>
-                <option>Male</option>
+                {% for row in client %}
+                <option value="{{ row[0] }}">
+                  {{ row[1] }} ({{ row[2] }} - {{ row[3] }})
+                </option>
+                {% endfor %}
             </select>
         </div>
 
@@ -66,8 +70,14 @@
         </div>
 
         <div class="form-group">
-            <label class="label">How Long Will You Be There?</label>
-            <input type="text" class="form-control" autocomplete="off" name="time" placeholder="Please Enter Length of Time">
+            <label class="label">Time There</label>
+            <select id="gender" class="form-control" autocomplete="off" name="time">
+                <option selected>Choose...</option>
+                <option>30 Minutes</option>
+                <option>30 Minutes - 1 hour</option>
+                <option>1 hour - 2 hours</option>
+                <option>2+ hours</option>
+            </select>
         </div>
 
         <div class="form-group">
