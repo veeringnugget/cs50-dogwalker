@@ -28,6 +28,12 @@ def index():
     connection = sqlite3.connect("fetch.db")
     cursor = connection.cursor()
     client_db = cursor.execute("SELECT * FROM clients WHERE user_id = ?", (session["user_id"],)).fetchall()
+    walk_client_db = cursor.execute("SELECT clients.client_name, clients.pets_name, walks.type, walks.time FROM clients INNER JOIN walks ON clients.id=walks.client_id WHERE user_id = ?",(session["user_id"], )).fetchall()
+    payment_client_db = cursor.execute("SELECT clients.client_name, clients.pets_name, SUM(walks.payment) AS total_payment, walks.paid, walks.notes FROM clients INNER JOIN walks ON clients.id=walks.client_id WHERE user_id = ? GROUP BY clients.client_name, clients.pets_name, walks.paid", (session["user_id"],)).fetchall()
+    overview_paid = cursor.execute("SELECT COUNT(DISTINCT clients.id) AS paid_clients, SUM(walks.payment) AS total_paid FROM clients INNER JOIN walks ON clients.id = walks.client_id WHERE walks.paid = ? AND user_id = ?", ("Yes", session["user_id"]), ).fetchone()
+    overview_unpaid = cursor.execute("SELECT COUNT(DISTINCT clients.id) AS unpaid_clients, SUM(walks.payment) AS total_unpaid FROM clients INNER JOIN walks ON clients.id = walks.client_id WHERE walks.paid = ? AND user_id = ?", ("No", session["user_id"]), ).fetchone()
+    total_clients = cursor.execute("SELECT COUNT(DISTINCT client_name) FROM clients WHERE user_id = ?", (session["user_id"],)).fetchone() or 0
+    total_paid = cursor.execute("SELECT SUM(walks.payment) FROM walks JOIN clients ON walks.client_id = clients.id WHERE clients.user_id = ?", (session["user_id"], )).fetchone() or 0
     name = session.get("name")
     time = datetime.now().hour
     if time < 12:
@@ -38,7 +44,7 @@ def index():
         greeting = "Good Evening, "
     connection.commit()
     connection.close()
-    return render_template("index.html", name=name, greeting=greeting, client=client_db)
+    return render_template("index.html", name=name, greeting=greeting, client=client_db, walks=walk_client_db, payment=payment_client_db, unpaid=overview_unpaid, paid=overview_paid, total_clients=total_clients, total_paid=total_paid)
 
 @app.route('/login', methods=["GET", "POST"])
 def login():
