@@ -20,9 +20,9 @@
             <img class="link-logo" src="/static/house.svg" alt="Home" style="height: 18px; width: 18px;">
             Dashboard
           </a>
-          <a class="flex-fill text-sm-start nav-link" href="#">
+          <a class="flex-fill text-sm-start nav-link" href="/walks">
             <img class="link-logo" src="/static/clipboard-check.svg" alt="Home" style="height: 18px; width: 18px;">
-            Individual Client
+            Walks
           </a>
           <a class="flex-fill text-sm-start nav-link" href="/add">
             <img class="link-logo" src="/static/plus-square.svg" alt="Home" style="height: 18px; width: 18px;">
@@ -36,18 +36,53 @@
 
 
   <!--CENTRE PAGE-->
-  <div class="container-fluid"">
+  <div class="container-fluid">
     <div class="row align p-3 flex-column b-2">
       <h3>{{greeting}}{{name}}</h3>
       <span class="border-bottom"><h5>Please check out your dashboard below.</h5></span>
     </div>
-    <div class="row" style="height: 30vh; margin-top: 15px;">
-      <div class="col" style="border: 2px solid yellow;">Top-Left</div>
-      <div class="col" style="border: 2px solid green;">Top-Right</div>
+    <div class="row" style="margin-top: 15px;">
+
+      <div class="col" style="border: 2px solid rgb(249, 249, 249);">
+        <h5>Client Tracker</h5>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Client</th>
+            <th scope="col">Pets Name</th>
+            <th scope="col">Breed</th>
+            <th scope="col">Age</th>
+            <th scope="col">Gender</th>
+            <th scope="col">Notes</th>
+          </tr>
+        </thead>
+        <tbody>
+            {% for row in client %}
+          <tr>
+            <td>{{ row[2] }}</td>
+            <td>{{ row[3] }}</td>
+            <td>{{ row[4] }}</td>
+            <td>{{ row[5] }}</td>
+            <td>{{ row[6] }}</td>
+            <td>{{ row[7] }}</td>
+          </tr>
+            {% endfor %}
+        </tbody>
+      </table>
+      </div>
+  
+      <div class="col" style="border: 2px solid rgb(249, 249, 249);">
+        <h5>Walks</h5>
+      </div>
     </div>
+    
     <div class="row" style="height: 30vh; margin-top: 15px;">
-      <div class="col" style="border: 2px solid yellow;">Top-Left</div>
-      <div class="col" style="border: 2px solid green;">Top-Right</div>
+      <div class="col" style="border: 2px solid rgb(249, 249, 249);">
+        <h5>Payments</h5>
+      </div>
+      <div class="col" style="border: 2px solid rgb(249, 249, 249);">
+        <h5>Overview</h5>
+      </div>
     </div>
   </div>
 
